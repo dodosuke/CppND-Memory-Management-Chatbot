@@ -42,11 +42,75 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
+ChatBot::ChatBot(ChatBot &source) {
 
-////
-//// EOF STUDENT CODE
+    std::cout << "COPYING content of instance " << &source << " to instance " << this << std::endl;
+
+    _image = source.GetImageHandle();
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+}
+
+ChatBot::ChatBot(ChatBot &&source) {
+
+    std::cout << "MOVING (c’tor) instance " << &source << " to instance " << this << std::endl;
+
+    _image = source.GetImageHandle();
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+
+    source._image = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._currentNode = nullptr;
+}
+
+ChatBot &ChatBot::operator=(const ChatBot &source) {
+
+    std::cout << "ASSIGNING content of instance " << &source << " to instance " << this << std::endl;
+
+    if (this == &source)
+        return *this;
+
+    if (_image != NULL) {
+        delete _image;
+        _image = NULL;
+    }
+
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+
+    return *this;
+}
+
+ChatBot &ChatBot::operator=(ChatBot &&source) {
+
+    std::cout << "MOVING (assign) instance " << &source << " to instance " << this << std::endl;
+
+    if (this == &source)
+        return *this;
+
+    if (_image != NULL) {
+        delete _image;
+        _image = NULL;
+    }
+
+    _image = source._image;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
+    
+    source._image = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._currentNode = nullptr;
+
+    return *this;
+}
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
