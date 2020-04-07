@@ -3,6 +3,7 @@
 #include <wx/image.h>
 #include <string>
 #include <memory>
+//#include <iostream>
 #include "chatbot.h"
 #include "chatlogic.h"
 #include "chatgui.h"
@@ -133,13 +134,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
-    //// STUDENT CODE
-    ////
-
-    //delete _chatLogic;
-
-    ////
-    //// EOF STUDENT CODE
+//    std::cout << "ChatBotPanelDialog Destructor" << std::endl;
 }
 
 void ChatBotPanelDialog::AddDialogItem(wxString text, bool isFromUser)
