@@ -8,13 +8,6 @@ GraphNode::GraphNode(int id)
 
 GraphNode::~GraphNode()
 {
-    delete _chatBot; 
-
-    // delete not-owned edges
-    for (auto it = std::begin(_parentEdges); it != std::end(_parentEdges); ++it)
-    {
-        delete *it;
-    }
 }
 
 void GraphNode::AddToken(std::string token)
